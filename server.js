@@ -1,12 +1,23 @@
 var express=require('express');
 var app = express();
 
+
 app.get('/:date', function (req, res) {
+  
+  if(req.url==='/favicon.ico'){
+    res.writeHead(200,{'Content-Type':'image/x-icon'});
+    console.log('favicon req');
+    res.end();
+    return;
+  }
+  
+  
   var date = req.params.date; //date is a string instead of a number
   console.log(date);
 
   var unixtime=null;
   var naturaltime=null;
+  
   
   
    if (new Date(Number(date)).getTime()>0){
